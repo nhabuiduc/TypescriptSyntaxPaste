@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
+  <Metadata>
+    <Identity Id="VSIXProject5.bui duc nha.adfe0686-4b72-47b3-857c-0445a1910a71" Version="1.0" Language="en-US" Publisher="bui duc nha" />
+    <DisplayName>TypescriptSyntaxPaste</DisplayName>
+    <Description xml:space="preserve">Allow you to copy C# source code, then paste as Typescript syntax which help you with converting DTO or interface.
+Copy any C# code (correct syntax, whole class, method or interface, currently does not support to convert fragment of source code)
+It is based on Roslyn compiler, and simply only convert to the Typescript syntax. (without semantic information)</Description>
+  </Metadata>
+  <Installation>
+    <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[14.0]" />
+  </Installation>
+  <Dependencies>
+    <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />
+    <Dependency Id="Microsoft.VisualStudio.MPF.14.0" DisplayName="Visual Studio MPF 14.0" d:Source="Installed" Version="[14.0]" />
+  </Dependencies>
+  <Assets>
+    <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%|" />
+  </Assets>
+</PackageManifest>

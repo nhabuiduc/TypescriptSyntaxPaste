@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TypescriptSyntaxPaste", "VSIXProject5\TypescriptSyntaxPaste.csproj", "{9FE49593-3450-441F-AB64-02DEF912B9B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TypescriptSyntaxPaste.Tests", "TypescriptSyntaxPaste.Tests\TypescriptSyntaxPaste.Tests.csproj", "{2D69301B-A90B-4601-8330-A9A908332744}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9FE49593-3450-441F-AB64-02DEF912B9B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FE49593-3450-441F-AB64-02DEF912B9B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FE49593-3450-441F-AB64-02DEF912B9B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FE49593-3450-441F-AB64-02DEF912B9B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D69301B-A90B-4601-8330-A9A908332744}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D69301B-A90B-4601-8330-A9A908332744}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D69301B-A90B-4601-8330-A9A908332744}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D69301B-A90B-4601-8330-A9A908332744}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
