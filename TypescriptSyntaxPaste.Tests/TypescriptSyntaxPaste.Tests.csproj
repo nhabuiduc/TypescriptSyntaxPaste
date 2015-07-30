@@ -114,7 +114,7 @@
     <Compile Include="DTOTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\VSIXProject5\TypescriptSyntaxPaste.csproj">
+    <ProjectReference Include="..\TypescriptSyntaxPaste\TypescriptSyntaxPaste.csproj">
       <Project>{9fe49593-3450-441f-ab64-02def912b9b1}</Project>
       <Name>TypescriptSyntaxPaste</Name>
     </ProjectReference>
