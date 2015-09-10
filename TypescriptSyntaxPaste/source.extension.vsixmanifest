@@ -9,7 +9,6 @@ It is based on Roslyn compiler, and simply only convert to the Typescript syntax
   </Metadata>
   <Installation>
     <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[14.0,15.0]" />
-    <InstallationTarget Version="[14.0,15.0)" Id="Microsoft.VisualStudio.VSWinExpress" />
   </Installation>
   <Dependencies>
     <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />
