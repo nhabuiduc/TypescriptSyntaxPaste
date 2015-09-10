@@ -12,6 +12,8 @@ using RoslynTypeScript.Translation;
 using System;
 using System.Windows.Forms;
 using System.Linq;
+using Microsoft.VisualStudio.Shell;
+using TypescriptSyntaxPaste.VSIX;
 
 namespace TypescriptSyntaxPaste
 {
@@ -23,28 +25,18 @@ namespace TypescriptSyntaxPaste
         private ITextView _textView;
         private IOleCommandTarget _nextCommandTarget;
         private DTE2 _dte;
+        private Package package;
+        private CSharpToTypescriptConverter csharpToTypescriptConverter = new CSharpToTypescriptConverter();
 
         public PasteCommandHandler(IVsTextView adapter, ITextView textView, DTE2 dte)
         {
             _textView = textView;
             _dte = dte;
             adapter.AddCommandFilter(this, out _nextCommandTarget);
-
+            this.package = package;
         }
 
-        private MetadataReference mscorlib;
-        private MetadataReference Mscorlib
-        {
-            get
-            {
-                if (mscorlib == null)
-                {
-                    mscorlib = MetadataReference.CreateFromFile(typeof(object).Assembly.Location);
-                }
-
-                return mscorlib;
-            }
-        }      
+        
 
         public int Exec(ref Guid pguidCmdGroup, uint nCmdID, uint nCmdexecopt, IntPtr pvaIn, IntPtr pvaOut)
         {           
@@ -86,13 +78,11 @@ namespace TypescriptSyntaxPaste
                 return false;
             }
 
-            string text = Clipboard.GetText(TextDataFormat.Text);
-            var typescriptCode = convertToTypescript(text);
+            string text = Clipboard.GetText(TextDataFormat.Text);     
 
-            if (typescriptCode == null)
-            {
-                return false;
-            }
+            var typescriptCode = csharpToTypescriptConverter.ConvertToTypescript(text, SettingStore.Instance.IsConvertToInterface);
+
+            if (typescriptCode == null) return false;            
 
             InsertIntoDocument(doc, typescriptCode);
 
@@ -104,40 +94,7 @@ namespace TypescriptSyntaxPaste
             return !(pguidCmdGroup == _guid && nCmdID == _commandId && Clipboard.ContainsText());
         }
 
-        private string convertToTypescript(string text)
-        {
-            try
-            {                
-                var tree = (CSharpSyntaxTree)CSharpSyntaxTree.ParseText(text);
-
-                // detect to see if it's actually C# sourcode by checking whether it has any error
-                if (tree.GetDiagnostics().Any(f => f.Severity == DiagnosticSeverity.Error))
-                {
-                    return null;
-                }
-
-                var root = tree.GetRoot();
-                var translationNode = TF.Get(root, null);
-
-                var compilation = CSharpCompilation.Create("TemporaryCompilation",
-                     syntaxTrees: new[] { tree }, references: new[] { Mscorlib });
-                var model = compilation.GetSemanticModel(tree);
-
-                translationNode.Compilation = compilation;
-                translationNode.SemanticModel = model;
-
-                translationNode.ApplyPatch();
-                return translationNode.Translate();
-
-            }
-            catch (Exception ex)
-            {
-                // TODO
-                // swallow exception .!!!!!!!!!!!!!!!!!!!!!!!
-            }
-
-            return null;
-        }
+        
 
         private void InsertIntoDocument(EnvDTE.TextDocument doc, string typescriptCode)
         {

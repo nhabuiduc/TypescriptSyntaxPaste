@@ -51,6 +51,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ClassToInterfaceReplacement.cs" />
     <Compile Include="Constants\ModifierConstants.cs" />
     <Compile Include="Constants\OperatorConstants.cs" />
     <Compile Include="Constants\PredefinedTypeConstants.cs" />
@@ -58,10 +59,11 @@
     <Compile Include="Contract\IBaseExtended.cs" />
     <Compile Include="Contract\ITranslationVisitor.cs" />
     <Compile Include="Contract\ITypeParameterConstraint.cs" />
+    <Compile Include="CSharpToTypescriptConverter.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="Translation\InstanceExpressionTranslation.cs" />
-    <Compile Include="PasteCommandHandler.cs" />
-    <Compile Include="PasteTextviewCreationListener.cs" />
+    <Compile Include="VSIX\PasteCommandHandler.cs" />
+    <Compile Include="VSIX\PasteTextviewCreationListener.cs" />
     <Compile Include="Patch\ArrayInitReturnForYieldPatch.cs" />
     <Compile Include="Patch\FieldInitializePatch.cs" />
     <Compile Include="Patch\GenericConstrantsPatch.cs" />
@@ -200,6 +202,8 @@
     <Compile Include="VirtualTranslation\Delegates\FunctionTypeGenericNameTranslation.cs" />
     <Compile Include="VirtualTranslation\Delegates\PredicateGenericNameTranslation.cs" />
     <Compile Include="VirtualTranslation\VirtualTokenTranslation.cs" />
+    <Compile Include="VSIX\SettingStore.cs" />
+    <Compile Include="VSIX\ToolOptions.cs" />
     <None Include="Translation\ClassTranslationTemplate.cs">
       <DependentUpon>ClassTranslationTemplate.tt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -218,6 +222,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ClassTranslationTemplate.cs</LastGenOutput>
     </Content>
+    <Content Include="VSIX\Resources\ToolOptions.ico" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
