@@ -1,6 +1,6 @@
 # TypescriptSyntaxPaste
 
--Visual Studio Extension which converts C# SYNTAX to Typescript SYNTAX, you just need to Copy C# code, and paste into Typescript.ts source code.    
+- Visual Studio Extension which converts C# SYNTAX to Typescript SYNTAX, you just need to Copy C# code, and paste into Typescript.ts source code.    
 
 - There is option which will convert class/struct to Typescript interface. (In VS 2015 goto Tool->Option->Typescript Paste-> Convert to interface:true)    
 
