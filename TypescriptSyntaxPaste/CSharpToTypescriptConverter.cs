@@ -39,6 +39,9 @@ namespace TypescriptSyntaxPaste
 
                 var root = tree.GetRoot();
 
+                // if it only contains comments, just return the original texts
+                if (IsEmptyRoot(root)) return null;
+
                 if (convertClssToInterface)
                 {
                     root = ClassToInterfaceReplacement.ReplaceClass(root);
@@ -66,6 +69,11 @@ namespace TypescriptSyntaxPaste
             }
 
             return null;
+        }
+
+        private bool IsEmptyRoot(SyntaxNode root)
+        {
+            return !root.DescendantNodes().Any();
         }
     }
 }
