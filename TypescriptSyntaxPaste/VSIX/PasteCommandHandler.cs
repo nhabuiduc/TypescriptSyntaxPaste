@@ -80,7 +80,7 @@ namespace TypescriptSyntaxPaste
 
             string text = Clipboard.GetText(TextDataFormat.Text);     
 
-            var typescriptCode = csharpToTypescriptConverter.ConvertToTypescript(text, SettingStore.Instance.IsConvertToInterface);
+            var typescriptCode = csharpToTypescriptConverter.ConvertToTypescript(text, SettingStore.Instance);
 
             if (typescriptCode == null) return false;            
 

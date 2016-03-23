@@ -91,6 +91,7 @@ namespace TypescriptSyntaxPaste.VSIX
     {
         private bool isConvertToInterface = false;
 
+
         [Category("Typescript Paste")]
         [DisplayName("Convert to interface")]
         [Description("Convert to interfaces for classes, structs")]
@@ -100,6 +101,18 @@ namespace TypescriptSyntaxPaste.VSIX
             set {
                 isConvertToInterface = value;
                 SettingStore.Instance.IsConvertToInterface = value;
+            }
+        }
+
+        [Category("Typescript Paste")]
+        [DisplayName("Convert members to camelcase")]
+        [Description("Convert to member names to camel case")]
+        public bool IsConvertMemberToCamelCase
+        {
+            get { return SettingStore.Instance.IsConvertMemberToCamelCase; }
+            set
+            {
+                SettingStore.Instance.IsConvertMemberToCamelCase = value;
             }
         }
     }

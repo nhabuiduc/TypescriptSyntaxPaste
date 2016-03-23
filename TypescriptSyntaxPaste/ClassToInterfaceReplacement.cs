@@ -13,7 +13,7 @@ namespace TypescriptSyntaxPaste
     public class ClassToInterfaceReplacement
     {
         public static CSharpSyntaxNode ReplaceClass(CSharpSyntaxNode syntaxNode)
-        {
+        {   
             IEnumerable<TypeDeclarationSyntax> allClassSyntaxes = syntaxNode.DescendantNodesAndSelf().OfType<ClassDeclarationSyntax>();
             IEnumerable<TypeDeclarationSyntax> allStructSyntaxes = syntaxNode.DescendantNodesAndSelf().OfType<StructDeclarationSyntax>();
 

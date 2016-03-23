@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TypescriptSyntaxPaste.VSIX;
 
 namespace TypescriptSyntaxPaste
 {
@@ -25,7 +26,7 @@ namespace TypescriptSyntaxPaste
             }
         }
 
-        public string ConvertToTypescript(string text, bool convertClssToInterface)
+        public string ConvertToTypescript(string text,SettingStore settingStore)
         {
             try
             {
@@ -42,9 +43,14 @@ namespace TypescriptSyntaxPaste
                 // if it only contains comments, just return the original texts
                 if (IsEmptyRoot(root)) return null;
 
-                if (convertClssToInterface)
+                if (settingStore.IsConvertToInterface)
                 {
                     root = ClassToInterfaceReplacement.ReplaceClass(root);
+                }
+
+                if (settingStore.IsConvertMemberToCamelCase)
+                {
+                    root = MakeMemberCamelCase.Make(root);
                 }
 
                 tree = (CSharpSyntaxTree)root.SyntaxTree;

@@ -61,6 +61,7 @@
     <Compile Include="Contract\ITypeParameterConstraint.cs" />
     <Compile Include="CSharpToTypescriptConverter.cs" />
     <Compile Include="Helper.cs" />
+    <Compile Include="MakeMemberCamelCase.cs" />
     <Compile Include="Translation\InstanceExpressionTranslation.cs" />
     <Compile Include="VSIX\PasteCommandHandler.cs" />
     <Compile Include="VSIX\PasteTextviewCreationListener.cs" />
