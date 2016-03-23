@@ -35,4 +35,4 @@ to:
            }}";
 ````    
 
-For more information about Syntax Tree in Roslyn, you can use Syntax Visualizer which is included in VS 2015 (View -> Other Windows-> Syntax Visualizer).
+For more information about Syntax Tree in Roslyn, you can use Syntax Visualizer which is included in VS 2015 (View -> Other Windows-> Syntax Visualizer) or online version: http://bdnprojects.net/CSharpSyntaxParser/
