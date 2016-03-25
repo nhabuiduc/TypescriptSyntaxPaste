@@ -50,7 +50,7 @@ namespace RoslynTypeScript.Translation
                 {
                     defaultStr = " = " + defaultStr;
                 }
-                return $"{Helper.GetAttributeList(Syntax.AttributeLists)}public {Syntax.Identifier}: {Type.Translate()}{defaultStr} ;";
+                return $"{Helper.GetAttributeList(Syntax.AttributeLists)} {Modifiers.Translate()} {Syntax.Identifier}: {Type.Translate()}{defaultStr} ;";
             }
 
             return AccessorList.Translate();

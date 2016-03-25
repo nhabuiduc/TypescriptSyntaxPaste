@@ -403,5 +403,18 @@ export class DTO5 {
     }
 }");
         }
+
+        [TestMethod]
+        public void Convert_PrivateProperties_Correct()
+        {
+            ConvertHelper.AssertConvertingIgnoreSpaces(@"public class DTO7
+{
+    private string Field1 {get;set;}
+    private static string Field2 {get;set;}
+}", @"export class DTO7 {
+    private Field1:string;
+    private static Field2:string;
+    }");
+        }
     }
 }
