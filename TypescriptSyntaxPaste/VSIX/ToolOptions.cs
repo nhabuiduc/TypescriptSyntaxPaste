@@ -16,6 +16,7 @@ using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.Win32;
 using System.ComponentModel;
+using System.Collections.Generic;
 
 namespace TypescriptSyntaxPaste.VSIX
 {
@@ -75,15 +76,6 @@ namespace TypescriptSyntaxPaste.VSIX
         public static ToolOptions Instance { get; set; }
         
 
-        public bool IsConvertToInterface
-        {
-            get
-            {
-                OptionPageGrid page = (OptionPageGrid)GetDialogPage(typeof(OptionPageGrid));
-                return page.IsConvertToInterface;
-            }
-        }
-
         #endregion
     }
 
@@ -127,5 +119,32 @@ namespace TypescriptSyntaxPaste.VSIX
                 SettingStore.Instance.IsConvertListToArray = value;
             }
         }
+
+        [Category("Typescript Paste")]
+        [DisplayName("Replace Type name")]
+        [Description("Replace type name with another name")]
+        public TypeNameReplacementData[] ReplacedTypeNameArray
+        {
+            get { return SettingStore.Instance.ReplacedTypeNameArray; }
+            set
+            {
+                SettingStore.Instance.ReplacedTypeNameArray = value;
+            }
+        }
+    }
+
+    [Description("Define type name to be replaced")]
+    public class TypeNameReplacementData
+    {
+        [DisplayName("Type Name")]
+        public string OldTypeName { get; set; }
+        [DisplayName("New Type Name")]
+        public string NewTypeName { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("{0} => {1}", OldTypeName ?? "name", NewTypeName ?? "new name");
+        }
+
     }
 }

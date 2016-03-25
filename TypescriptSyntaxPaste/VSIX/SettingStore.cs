@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio.Settings;
 using Microsoft.VisualStudio.Shell.Settings;
 using Microsoft.VisualStudio.Shell;
+using System.Xml.Serialization;
+using System.IO;
 
 namespace TypescriptSyntaxPaste.VSIX
 {
@@ -19,6 +21,7 @@ namespace TypescriptSyntaxPaste.VSIX
         private const string IsConvertMemberToCamelCaseConst = "IsConvertMemberToCamelCase";
         private const string CollectionPath = "TypescriptSyntaxPaste";
         private const string IsConvertListToArrayConst = "IsConvertListToArray";
+        private const string ReplacedTypeNameArrayConst = "ReplacedTypeNameArray";
 
         protected SettingStore()
         {
@@ -80,6 +83,55 @@ namespace TypescriptSyntaxPaste.VSIX
             {
 
                 userSettingsStore.SetBoolean(CollectionPath, IsConvertListToArrayConst, value);
+            }
+        }
+
+        XmlSerializer serializer = new XmlSerializer(typeof(TypeNameReplacementData[]));
+        private TypeNameReplacementData[] replacedTypeNameArray;
+
+        public TypeNameReplacementData[] ReplacedTypeNameArray
+        {
+            get
+            {
+                if(replacedTypeNameArray != null)
+                {
+                    return replacedTypeNameArray;
+                }
+
+                if (!userSettingsStore.PropertyExists(CollectionPath, ReplacedTypeNameArrayConst))
+                {
+                    return new TypeNameReplacementData[] {
+                        new TypeNameReplacementData
+                        {
+                            NewTypeName = "Date",
+                            OldTypeName = "DateTimeOffset"
+                        },
+                        new TypeNameReplacementData
+                        {
+                            NewTypeName = "Date",
+                            OldTypeName = "DateTime"
+                        }
+                    };
+                }
+
+                using (StringReader textReader = new StringReader(userSettingsStore.GetString(CollectionPath, ReplacedTypeNameArrayConst)))
+                {
+                    replacedTypeNameArray = (TypeNameReplacementData[])serializer.Deserialize(textReader);
+                }
+
+                return replacedTypeNameArray;
+                 
+            }
+            set
+            {
+                using (StringWriter textWriter = new StringWriter())
+                {
+                    serializer.Serialize(textWriter, value);
+                    userSettingsStore.SetString(CollectionPath, ReplacedTypeNameArrayConst, textWriter.ToString());
+                    replacedTypeNameArray = value;
+                }
+
+                
             }
         }
     }

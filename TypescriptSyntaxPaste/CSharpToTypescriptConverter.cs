@@ -58,6 +58,11 @@ namespace TypescriptSyntaxPaste
                     root = ListToArrayReplacement.ReplaceList(root);
                 }
 
+                if(settingStore.ReplacedTypeNameArray.Length > 0)
+                {
+                    root = TypeNameReplacement.Replace(settingStore.ReplacedTypeNameArray, root);
+                }
+
                 tree = (CSharpSyntaxTree)root.SyntaxTree;
 
                 var translationNode = TF.Get(root, null);
