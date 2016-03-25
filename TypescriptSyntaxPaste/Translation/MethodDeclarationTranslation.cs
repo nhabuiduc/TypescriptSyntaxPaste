@@ -45,6 +45,8 @@ namespace RoslynTypeScript.Translation
 
         public override void ApplyPatch()
         {
+            GenericConstrantsPatch genericConstrantsPatch = new GenericConstrantsPatch();
+            genericConstrantsPatch.Apply(this);
             base.ApplyPatch();
 
             var arrayInitReturnForYieldPatch = new ArrayInitReturnForYieldPatch();
