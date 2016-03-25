@@ -18,6 +18,7 @@ namespace TypescriptSyntaxPaste.VSIX
         private const string IsConvertToInterfaceConst = "IsConvertToInterface";
         private const string IsConvertMemberToCamelCaseConst = "IsConvertMemberToCamelCase";
         private const string CollectionPath = "TypescriptSyntaxPaste";
+        private const string IsConvertListToArrayConst = "IsConvertListToArray";
 
         protected SettingStore()
         {
@@ -61,6 +62,24 @@ namespace TypescriptSyntaxPaste.VSIX
             {
                 
                 userSettingsStore.SetBoolean(CollectionPath, IsConvertToInterfaceConst, value);
+            }
+        }
+
+        public bool IsConvertListToArray
+        {
+            get
+            {
+                if (!userSettingsStore.PropertyExists(CollectionPath, IsConvertListToArrayConst))
+                {
+                    return false;
+                }
+
+                return userSettingsStore.GetBoolean(CollectionPath, IsConvertListToArrayConst);
+            }
+            set
+            {
+
+                userSettingsStore.SetBoolean(CollectionPath, IsConvertListToArrayConst, value);
             }
         }
     }

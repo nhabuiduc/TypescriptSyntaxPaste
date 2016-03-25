@@ -115,5 +115,17 @@ namespace TypescriptSyntaxPaste.VSIX
                 SettingStore.Instance.IsConvertMemberToCamelCase = value;
             }
         }
+
+        [Category("Typescript Paste")]
+        [DisplayName("Convert List<T> to array T[]")]
+        [Description("Convert List to array T[]")]
+        public bool IsConvertListToArray
+        {
+            get { return SettingStore.Instance.IsConvertListToArray; }
+            set
+            {
+                SettingStore.Instance.IsConvertListToArray = value;
+            }
+        }
     }
 }

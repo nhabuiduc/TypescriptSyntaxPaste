@@ -53,6 +53,11 @@ namespace TypescriptSyntaxPaste
                     root = MakeMemberCamelCase.Make(root);
                 }
 
+                if (settingStore.IsConvertListToArray)
+                {
+                    root = ListToArrayReplacement.ReplaceList(root);
+                }
+
                 tree = (CSharpSyntaxTree)root.SyntaxTree;
 
                 var translationNode = TF.Get(root, null);
