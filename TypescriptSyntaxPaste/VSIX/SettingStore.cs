@@ -22,6 +22,7 @@ namespace TypescriptSyntaxPaste.VSIX
         private const string CollectionPath = "TypescriptSyntaxPaste";
         private const string IsConvertListToArrayConst = "IsConvertListToArray";
         private const string ReplacedTypeNameArrayConst = "ReplacedTypeNameArray";
+        private const string AddIPrefixInterfaceDeclarationConst = "AddIPrefixInterfaceDeclaration";
 
         protected SettingStore()
         {
@@ -132,6 +133,24 @@ namespace TypescriptSyntaxPaste.VSIX
                 }
 
                 
+            }
+        }
+
+        public bool AddIPrefixInterfaceDeclaration
+        {
+            get
+            {
+                if (!userSettingsStore.PropertyExists(CollectionPath, AddIPrefixInterfaceDeclarationConst))
+                {
+                    return false;
+                }
+
+                return userSettingsStore.GetBoolean(CollectionPath, AddIPrefixInterfaceDeclarationConst);
+            }
+            set
+            {
+
+                userSettingsStore.SetBoolean(CollectionPath, AddIPrefixInterfaceDeclarationConst, value);
             }
         }
     }

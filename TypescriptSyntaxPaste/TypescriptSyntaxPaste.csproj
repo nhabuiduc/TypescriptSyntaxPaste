@@ -51,6 +51,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AddIPrefixInterfaceDeclaration.cs" />
     <Compile Include="ClassToInterfaceReplacement.cs" />
     <Compile Include="Constants\ModifierConstants.cs" />
     <Compile Include="Constants\OperatorConstants.cs" />

@@ -58,10 +58,17 @@ namespace TypescriptSyntaxPaste
                     root = ListToArrayReplacement.ReplaceList(root);
                 }
 
-                if(settingStore.ReplacedTypeNameArray.Length > 0)
+                if (settingStore.ReplacedTypeNameArray.Length > 0)
                 {
                     root = TypeNameReplacement.Replace(settingStore.ReplacedTypeNameArray, root);
                 }
+
+                if (settingStore.AddIPrefixInterfaceDeclaration)
+                {
+                    root = AddIPrefixInterfaceDeclaration.AddIPrefix(root);
+                }
+
+
 
                 tree = (CSharpSyntaxTree)root.SyntaxTree;
 

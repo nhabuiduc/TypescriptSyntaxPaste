@@ -131,6 +131,18 @@ namespace TypescriptSyntaxPaste.VSIX
                 SettingStore.Instance.ReplacedTypeNameArray = value;
             }
         }
+
+        [Category("Typescript Paste")]
+        [DisplayName("Add 'I' To Interface Declaration")]
+        [Description("Add 'I' Prefix To Interface Declaration")]
+        public bool AddIPrefixInterfaceDeclaration
+        {
+            get { return SettingStore.Instance.AddIPrefixInterfaceDeclaration; }
+            set
+            {
+                SettingStore.Instance.AddIPrefixInterfaceDeclaration = value;
+            }
+        }
     }
 
     [Description("Define type name to be replaced")]
