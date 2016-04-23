@@ -112,6 +112,7 @@
     <Compile Include="GeneralTestCases\Case1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DTOTests.cs" />
+    <Compile Include="ThrowStatementTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TypescriptSyntaxPaste\TypescriptSyntaxPaste.csproj">

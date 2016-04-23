@@ -26,7 +26,22 @@ namespace RoslynTypeScript.Translation
 
         protected override string InnerTranslate()
         {
-            return $"throw {Expression.Translate()};";
+
+            var err = "err";
+            // try to find exception variable from catch clause
+            if (Expression == null)
+            {
+                var tokenText = this.Syntax.Ancestors().OfType<CatchClauseSyntax>().FirstOrDefault()?.Declaration?.Identifier.ValueText;
+
+                err = tokenText ?? err;
+
+            }
+            else
+            {
+                err = Expression.Translate();
+            }
+
+            return $"throw {err};";
         }
     }
 }
