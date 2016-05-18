@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace TypescriptSyntaxPaste.Tests
 {
@@ -416,5 +417,23 @@ export class DTO5 {
     private static Field2:string;
     }");
         }
+        [TestMethod]
+        public void Convert_WithOptionalInterfacePropertiesMethods()
+        {
+            ConvertHelper.AssertConvertingIgnoreSpaces(@"public class Foo
+    {
+        public void Method1()
+        {
+        }
+
+        public string Hello { get; set; }
+    }", @"	export interface Foo {
+    Method1?(): void;
+    Hello?: string;
+}", new Func<CSharpSyntaxNode, CSharpSyntaxNode>[] {ClassToInterfaceReplacement.ReplaceClass,  OptionalInterfaceProperties.AddOptional });
+        }
     }
+
+    
+
 }

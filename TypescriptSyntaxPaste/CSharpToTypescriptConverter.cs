@@ -68,7 +68,10 @@ namespace TypescriptSyntaxPaste
                     root = AddIPrefixInterfaceDeclaration.AddIPrefix(root);
                 }
 
-
+                if (settingStore.IsInterfaceOptionalProperties)
+                {
+                    root = OptionalInterfaceProperties.AddOptional(root);
+                }
 
                 tree = (CSharpSyntaxTree)root.SyntaxTree;
 

@@ -12,7 +12,7 @@ namespace TypescriptSyntaxPaste.Tests
 {
     public static class ConvertHelper
     {
-        public static string ConvertToTypescript(string csharpCode)
+        public static string ConvertToTypescript(string csharpCode, IEnumerable< Func<CSharpSyntaxNode,CSharpSyntaxNode>> funcs = null)
         {
             var mscorlib = MetadataReference.CreateFromFile(typeof(object).Assembly.Location);
             var tree = (CSharpSyntaxTree)CSharpSyntaxTree.ParseText(csharpCode);
@@ -23,6 +23,16 @@ namespace TypescriptSyntaxPaste.Tests
             }
 
             var root = tree.GetRoot();
+
+            if (funcs != null)
+            {
+                foreach (var func in funcs)
+                {
+                    root = func(root);
+                }
+                
+            }
+
             var translationNode = TF.Get(root, null);
 
             var compilation = CSharpCompilation.Create("TemporaryCompilation",
@@ -36,10 +46,10 @@ namespace TypescriptSyntaxPaste.Tests
             return translationNode.Translate();
         }
 
-        public static void AssertConvertingIgnoreSpaces(string csharpCode, string typescriptCode)
+        public static void AssertConvertingIgnoreSpaces(string csharpCode, string typescriptCode,IEnumerable< Func<CSharpSyntaxNode, CSharpSyntaxNode>> funcs = null)
         {
             var stripTypescriptCode = StripAllSpaces(typescriptCode);
-            var converted = ConvertToTypescript(csharpCode);
+            var converted = ConvertToTypescript(csharpCode, funcs);
 
             Assert.AreEqual(stripTypescriptCode, StripAllSpaces(converted));
         }

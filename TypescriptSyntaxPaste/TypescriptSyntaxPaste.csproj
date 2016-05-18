@@ -61,6 +61,7 @@
     <Compile Include="Contract\ITranslationVisitor.cs" />
     <Compile Include="Contract\ITypeParameterConstraint.cs" />
     <Compile Include="CSharpToTypescriptConverter.cs" />
+    <Compile Include="OptionalInterfaceProperties.cs" />
     <Compile Include="TypeNameReplacement.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="ListToArrayReplacement.cs" />

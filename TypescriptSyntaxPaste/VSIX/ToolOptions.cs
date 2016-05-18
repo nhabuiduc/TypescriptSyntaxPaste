@@ -109,6 +109,18 @@ namespace TypescriptSyntaxPaste.VSIX
         }
 
         [Category("Typescript Paste")]
+        [DisplayName("Add ? as optional properties or methods")]
+        [Description("Add ? as optional properties or methods")]
+        public bool IsOptionalInterfacePropertiesMethods
+        {
+            get { return SettingStore.Instance.IsInterfaceOptionalProperties; }
+            set
+            {
+                SettingStore.Instance.IsInterfaceOptionalProperties = value;
+            }
+        }
+
+        [Category("Typescript Paste")]
         [DisplayName("Convert List<T> to array T[]")]
         [Description("Convert List to array T[]")]
         public bool IsConvertListToArray

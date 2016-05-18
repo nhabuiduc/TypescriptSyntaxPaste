@@ -23,6 +23,7 @@ namespace TypescriptSyntaxPaste.VSIX
         private const string IsConvertListToArrayConst = "IsConvertListToArray";
         private const string ReplacedTypeNameArrayConst = "ReplacedTypeNameArray";
         private const string AddIPrefixInterfaceDeclarationConst = "AddIPrefixInterfaceDeclaration";
+        private const string IsInterfaceOptionalPropertiesConsts = "IsInterfaceOptionalProperties";
 
         protected SettingStore()
         {
@@ -84,6 +85,24 @@ namespace TypescriptSyntaxPaste.VSIX
             {
 
                 userSettingsStore.SetBoolean(CollectionPath, IsConvertListToArrayConst, value);
+            }
+        }
+
+        public bool IsInterfaceOptionalProperties
+        {
+            get
+            {
+                if (!userSettingsStore.PropertyExists(CollectionPath, IsInterfaceOptionalPropertiesConsts))
+                {
+                    return false;
+                }
+
+                return userSettingsStore.GetBoolean(CollectionPath, IsInterfaceOptionalPropertiesConsts);
+            }
+            set
+            {
+
+                userSettingsStore.SetBoolean(CollectionPath, IsInterfaceOptionalPropertiesConsts, value);
             }
         }
 
