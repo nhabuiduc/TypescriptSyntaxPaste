@@ -1,0 +1,16 @@
+﻿{
+    "manifestVersion": 1,
+    "id": "TypescriptSyntaxPaste",
+    "version": "1.2.5",
+    "name": "Typescript Syntax Paste",
+  "publisher": "NhaBuiDuc",
+  "tags": [
+        "Typescript",
+        "Conversion"
+    ],
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ]
+}
