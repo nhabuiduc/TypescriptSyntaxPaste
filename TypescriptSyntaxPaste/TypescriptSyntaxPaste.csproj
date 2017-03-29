@@ -2,13 +2,17 @@
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Microsoft.VisualStudio.Sdk.BuildTasks.14.0.14.0.23-pre\build\Microsoft.VisualStudio.Sdk.BuildTasks.14.0.props" Condition="Exists('..\packages\Microsoft.VisualStudio.Sdk.BuildTasks.14.0.14.0.23-pre\build\Microsoft.VisualStudio.Sdk.BuildTasks.14.0.props')" />
   <Import Project="..\packages\Microsoft.VSSDK.BuildTools.15.0.26201\build\Microsoft.VSSDK.BuildTools.props" Condition="Exists('..\packages\Microsoft.VSSDK.BuildTools.15.0.26201\build\Microsoft.VSSDK.BuildTools.props')" />
+  
   <PropertyGroup>
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <UseCodebase>true</UseCodebase>
+    <VsixType>v3</VsixType>
+    <TargetFrameworkProfile />
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' "><DeployExtension>false</DeployExtension></PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
@@ -42,7 +46,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DeployExtension>False</DeployExtension>
+    <DeployExtension>True</DeployExtension>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -64,6 +68,16 @@
     <Compile Include="Contract\ITypeParameterConstraint.cs" />
     <Compile Include="CSharpToTypescriptConverter.cs" />
     <Compile Include="OptionalInterfaceProperties.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="TypeNameReplacement.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="ListToArrayReplacement.cs" />
@@ -211,11 +225,17 @@
     <Compile Include="VirtualTranslation\VirtualTokenTranslation.cs" />
     <Compile Include="VSIX\SettingStore.cs" />
     <Compile Include="VSIX\ToolOptions.cs" />
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Translation\ClassTranslationTemplate.cs">
       <DependentUpon>ClassTranslationTemplate.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </None>
+    <EmbeddedResource Include="vss-extension.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Key.snk" />
@@ -280,7 +300,7 @@
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.CoreUtility, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.VisualStudio.CoreUtility.14.0.23107\lib\net45\Microsoft.VisualStudio.CoreUtility.dll</HintPath>
+      <HintPath>..\packages\Microsoft.VisualStudio.CoreUtility.14.3.25407\lib\net45\Microsoft.VisualStudio.CoreUtility.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.Editor, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
@@ -424,6 +444,10 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="VSPackage.resx">
       <MergeWithCTO>true</MergeWithCTO>
       <ManifestResourceName>VSPackage</ManifestResourceName>

@@ -116,7 +116,16 @@ namespace TypescriptSyntaxPaste
 
             if (command.IsAvailable)
             {
-                _dte.ExecuteCommand("Edit.FormatSelection");
+                // vs2017 bug, exception raise first time, try to ignore and call one more time
+                try
+                {
+                    _dte.ExecuteCommand("Edit.FormatSelection");
+                }
+                catch
+                {
+                    _dte.ExecuteCommand("Edit.FormatSelection");
+                }
+               
             }
         }       
     }
