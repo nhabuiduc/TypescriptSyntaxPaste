@@ -26,7 +26,7 @@ namespace TypescriptSyntaxPaste
             }
         }
 
-        public string ConvertToTypescript(string text,SettingStore settingStore)
+        public string ConvertToTypescript(string text, ISettingStore settingStore)
         {
             try
             {

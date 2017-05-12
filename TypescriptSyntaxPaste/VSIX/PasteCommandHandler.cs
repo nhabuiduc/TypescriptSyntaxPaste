@@ -25,7 +25,7 @@ namespace TypescriptSyntaxPaste
         private ITextView _textView;
         private IOleCommandTarget _nextCommandTarget;
         private DTE2 _dte;
-        private Package package;
+        //private Package package;
         private CSharpToTypescriptConverter csharpToTypescriptConverter = new CSharpToTypescriptConverter();
 
         public PasteCommandHandler(IVsTextView adapter, ITextView textView, DTE2 dte)
@@ -33,7 +33,7 @@ namespace TypescriptSyntaxPaste
             _textView = textView;
             _dte = dte;
             adapter.AddCommandFilter(this, out _nextCommandTarget);
-            this.package = package;
+           // this.package = package;
         }
 
         

@@ -11,7 +11,7 @@ using System.IO;
 
 namespace TypescriptSyntaxPaste.VSIX
 {
-    public class SettingStore
+    public class SettingStore : ISettingStore
     {
         public static SettingStore Instance = new SettingStore();
 
@@ -149,9 +149,7 @@ namespace TypescriptSyntaxPaste.VSIX
                     serializer.Serialize(textWriter, value);
                     userSettingsStore.SetString(CollectionPath, ReplacedTypeNameArrayConst, textWriter.ToString());
                     replacedTypeNameArray = value;
-                }
-
-                
+                }       
             }
         }
 
